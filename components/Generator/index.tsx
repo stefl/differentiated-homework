@@ -142,9 +142,9 @@ export default function Generator() {
             <TfiWrite className="w-12 h-12 inline-block mr-8" />
             <h1>Differentiated Homework Generator</h1>
           </div>
-          <p className="text-slate-700 text-lg mb-3">
-            For teachers - generate and adapt homework tasks to the needs of
-            students based on their ability or needs
+          <p className="text-slate-700 text-lg mb-12">
+            Teachers! Generate and adapt homework tasks to the needs of students
+            based on their ability or needs
           </p>
           <form onSubmit={onSubmit} className="flex flex-col gap-4">
             <Label text="About the student (eg. their action plan. Don't include PII)">
@@ -222,7 +222,7 @@ export default function Generator() {
               />
             </Label>
 
-            <Label text="Lesson transcript or write-up">
+            <Label text="Lesson transcript or write-up (Don't include PII)">
               <textarea
                 className="text-sm text-gray-base w-full 
                               mr-3 py-5 px-4 h-64 border 
@@ -273,7 +273,7 @@ export default function Generator() {
             </Label>
 
             <button
-              className="m-auto bg-green-600 hover:bg-green-500  text-white rounded p-6 mb-10 font-bold text-xl"
+              className="m-auto bg-green-600 hover:bg-green-500  text-white rounded px-6 py-4 mb-10 font-bold text-xl"
               type="submit"
             >
               Generate homework
@@ -298,7 +298,7 @@ export default function Generator() {
           </div>
         </div>
         <div
-          className="lg:fixed lg:h-screen lg:top-9 lg:right-0 lg:w-1/2 bg-slate-100 overflow-y-auto"
+          className="lg:fixed lg:h-screen lg:top-0 lg:right-0 lg:w-1/2 bg-slate-100 overflow-y-auto p-8"
           ref={outputRef}
         >
           {result && (
