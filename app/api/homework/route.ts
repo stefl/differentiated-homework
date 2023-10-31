@@ -1,11 +1,7 @@
 export const maxDuration = 60; // This function can run for a maximum of 60 seconds
-import OpenAI from "openai";
+import { OpenAIStream, OpenAIStreamPayload } from "../../../utils/OpenAIStream";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // defaults to process.env["OPENAI_API_KEY"]
-});
-
-export default async function (req, res) {
+export async function POST(req: Request): Promise<Response> {
   const {
     keyStage,
     subject,
@@ -15,9 +11,20 @@ export default async function (req, res) {
     objectives,
     transcript,
     title,
-  } = req.body;
+  } = (await req.json()) as {
+    keyStage?: string;
+    subject?: string;
+    numberOfTasks?: string;
+    actionPlan?: string;
+    summary?: string;
+    objectives?: string;
+    transcript?: string;
+    title?: string;
+  };
 
-  const completion = await openai.chat.completions.create({
+  console.log("Got request");
+
+  const payload: OpenAIStreamPayload = {
     messages: [
       {
         role: "user",
@@ -34,7 +41,15 @@ export default async function (req, res) {
       },
     ],
     model: "gpt-4",
-  });
+    temperature: 0.7,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    max_tokens: 2000,
+    stream: true,
+    n: 1,
+  };
+
   // const completion = await openai.createCompletion({
   //   model: "gpt-4",
   //   prompt: reviewPrompt({
@@ -54,8 +69,11 @@ export default async function (req, res) {
   //   presence_penalty: 0.0,
   // });
 
-  console.log(JSON.stringify(completion));
-  res.status(200).json({ result: completion.choices[0].message.content });
+  // console.log(JSON.stringify(completion));
+  // res.status(200).json({ result: completion.choices[0].message.content });
+
+  const stream = await OpenAIStream(payload);
+  return new Response(stream);
 }
 
 function reviewPrompt({
