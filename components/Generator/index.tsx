@@ -287,6 +287,14 @@ export default function Generator() {
               Clear form
             </button>
           </form>
+          <div className="p-8 text-gray-400">
+            A hackathon project by{" "}
+            <a href="https://stef.io" className="text-pink-400">
+              @stef
+            </a>{" "}
+            at the Generative AI in Education hackathon with support from Oak
+            National Academy, DfE, National Institute of Teachers and Faculty.
+          </div>
         </div>
         <div
           className="lg:fixed lg:h-screen lg:top-9 lg:right-0 lg:w-1/2 bg-slate-100 overflow-y-auto"
@@ -321,14 +329,6 @@ export default function Generator() {
               </div>
             </div>
           )}
-        </div>
-        <div className="p-8 text-gray-400">
-          A hackathon project by{" "}
-          <a href="https://stef.io" className="text-pink-400">
-            @stef
-          </a>{" "}
-          at the Generative AI in Education hackathon with support from Oak
-          National Academy, DfE, National Institute of Teachers and Faculty.
         </div>
       </main>
     </div>
