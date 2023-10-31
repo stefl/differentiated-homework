@@ -292,8 +292,9 @@ export default function Generator() {
             <a href="https://stef.io" className="text-pink-400">
               @stef
             </a>{" "}
-            at the Generative AI in Education hackathon with support from Oak
-            National Academy, DfE, National Institute of Teachers and Faculty.
+            et al. at the Generative AI in Education hackathon with support from
+            Oak National Academy, DfE, National Institute of Teachers and
+            Faculty.
           </div>
         </div>
         <div
