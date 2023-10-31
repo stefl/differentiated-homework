@@ -1,13 +1,13 @@
 {
   "functions": {
     "pages/api/homework": {
-      "maxDuration": 60
+      "maxDuration": 120
     },
     "pages/api/homework.ts": {
-      "maxDuration": 60
+      "maxDuration": 120
     },
     "pages/api/homework.js": {
-      "maxDuration": 60
+      "maxDuration": 120
     }
   }
 }
