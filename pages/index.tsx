@@ -95,7 +95,7 @@ export default function Review() {
 
       <main
         className="flex flex-col 
-                    items-center justify-center max-w-xl m-auto py-16"
+                    items-center justify-center max-w-xl m-auto py-16 px-4"
       >
         <h3 className="text-slate-900 text-xl mb-3 font-bold">
           Differentiated Homework Generator

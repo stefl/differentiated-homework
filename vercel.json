@@ -1,6 +1,6 @@
 {
   "functions": {
-    "pages/api/homework.js": {
+    "pages/api/homework": {
       "maxDuration": 60
     }
   }
