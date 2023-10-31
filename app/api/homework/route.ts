@@ -6,11 +6,13 @@ export async function POST(req: Request): Promise<Response> {
     keyStage,
     subject,
     numberOfTasks = 1,
+    maxTasks = 5,
     actionPlan,
     summary,
     objectives,
     transcript,
     title,
+    task,
   } = (await req.json()) as {
     keyStage?: string;
     subject?: string;
@@ -20,6 +22,8 @@ export async function POST(req: Request): Promise<Response> {
     objectives?: string;
     transcript?: string;
     title?: string;
+    maxTasks?: string;
+    task?: string;
   };
 
   console.log("Got request");
@@ -32,11 +36,13 @@ export async function POST(req: Request): Promise<Response> {
           keyStage,
           subject,
           numberOfTasks,
+          maxTasks,
           actionPlan,
           summary,
           objectives,
           transcript,
           title,
+          task,
         }),
       },
     ],
@@ -80,12 +86,18 @@ function reviewPrompt({
   keyStage,
   subject,
   numberOfTasks,
+  maxTasks,
   actionPlan,
   summary,
   objectives,
   transcript,
   title,
+  task,
 }) {
+  const taskDefinition = task
+    ? `Generate tasks based on this task definition: ${task}.`
+    : `Generate tasks based upon the inputs provided`;
+
   return `Context:
 
   You are a differentiated homework task generating bot. You will be provided with information about a ${keyStage} ${subject} lesson that a teacher in a UK school has delivered to their class.
@@ -93,7 +105,9 @@ function reviewPrompt({
   Task:
   
   Your task is to generate a set of potential homework tasks based on the provided lesson that could be given to students based on their particular educational needs.
-  
+
+  ${taskDefinition}
+
   Intended output:
   
   You should provide a valid markdown document containing a set of homework tasks that the student could do to continue their learning on the topics and learning objectives covered in the lesson.
@@ -103,7 +117,7 @@ function reviewPrompt({
   Adapt your homework task to the needs of the student based on the action plan. 
   Do not include any unrelated content. Do not mention the name of the teacher. Do not refer to content that is not covered in the lesson.
   
-  Instruct the student to pick ${numberOfTasks} of the tasks that they would find the most interesting.
+  Instruct the student to pick ${numberOfTasks} out of maximum ${maxTasks} tasks that they would find the most interesting.
   
   Action plan for the student:
   
