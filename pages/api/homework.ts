@@ -1,9 +1,8 @@
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY, // defaults to process.env["OPENAI_API_KEY"]
 });
-const openai = new OpenAIApi(configuration);
 
 export default async function (req, res) {
   const {
@@ -16,25 +15,46 @@ export default async function (req, res) {
     transcript,
     title,
   } = req.body;
-  const completion = await openai.createCompletion({
-    model: "gpt-3.5-turbo-16k",
-    prompt: reviewPrompt({
-      keyStage,
-      subject,
-      numberOfTasks,
-      actionPlan,
-      summary,
-      objectives,
-      transcript,
-      title,
-    }),
-    //max_tokens: 150,
-    temperature: 0.8,
-    top_p: 1.0,
-    frequency_penalty: 0.5,
-    presence_penalty: 0.0,
+
+  const completion = await openai.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content: reviewPrompt({
+          keyStage,
+          subject,
+          numberOfTasks,
+          actionPlan,
+          summary,
+          objectives,
+          transcript,
+          title,
+        }),
+      },
+    ],
+    model: "gpt-4",
   });
-  res.status(200).json({ result: completion.data.choices[0].text });
+  // const completion = await openai.createCompletion({
+  //   model: "gpt-4",
+  //   prompt: reviewPrompt({
+  //     keyStage,
+  //     subject,
+  //     numberOfTasks,
+  //     actionPlan,
+  //     summary,
+  //     objectives,
+  //     transcript,
+  //     title,
+  //   }),
+  //   //max_tokens: 150,
+  //   temperature: 0.8,
+  //   top_p: 1.0,
+  //   frequency_penalty: 0.5,
+  //   presence_penalty: 0.0,
+  // });
+
+  console.log(JSON.stringify(completion));
+  res.status(200).json({ result: completion.choices[0].message.content });
 }
 
 function reviewPrompt({
