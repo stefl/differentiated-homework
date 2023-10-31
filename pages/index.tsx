@@ -119,6 +119,34 @@ export default function Review() {
           </label>
 
           <label>
+            Subject
+            <input
+              className="text-sm text-gray-base w-full 
+                              mr-3 py-5 px-4 h-2 border 
+                              border-gray-200 rounded mb-2"
+              type="text"
+              name="subject"
+              placeholder="Computer Science"
+              value={subjectInput}
+              onChange={(e) => setSubjectInput(e.target.value)}
+            />
+          </label>
+
+          <label>
+            Number of tasks to complete
+            <input
+              className="text-sm text-gray-base w-full 
+                              mr-3 py-5 px-4 h-2 border 
+                              border-gray-200 rounded mb-2"
+              type="text"
+              name="numberOfTasks"
+              placeholder="1"
+              value={numberOfTasksInput}
+              onChange={(e) => setNumberOfTasksInput(e.target.value)}
+            />
+          </label>
+
+          <label>
             Key stage
             <input
               className="text-sm text-gray-base w-full 
@@ -138,7 +166,6 @@ export default function Review() {
               className="text-sm text-gray-base w-full 
                               mr-3 py-5 px-4 h-64 border 
                               border-gray-200 rounded mb-2"
-              type="text"
               name="summary"
               placeholder="A summary of the lesson"
               value={summaryInput}
@@ -152,7 +179,6 @@ export default function Review() {
               className="text-sm text-gray-base w-full 
                               mr-3 py-5 px-4 border 
                               border-gray-200 rounded mb-2 h-64"
-              type="text"
               name="objectives"
               placeholder="Your learning objectives"
               value={objectivesInput}
@@ -166,7 +192,6 @@ export default function Review() {
               className="text-sm text-gray-base w-full 
                               mr-3 py-5 px-4 h-64 border 
                               border-gray-200 rounded mb-2"
-              type="text"
               name="actionPlan"
               placeholder="The student's action plan or needs. Eg. reading age"
               value={actionPlanInput}
@@ -180,7 +205,6 @@ export default function Review() {
               className="text-sm text-gray-base w-full 
                               mr-3 py-5 px-4 h-64 border 
                               border-gray-200 rounded mb-2"
-              type="text"
               name="transcript"
               placeholder="A transcript of the lesson, or any free text that you have that explains what the lesson covered"
               value={transcriptInput}
@@ -189,8 +213,7 @@ export default function Review() {
           </label>
 
           <button
-            className="text-sm m-auto bg-green-600  text-white
-                              rounded p-6 mb-10 font-bold text-xl"
+            className="m-auto bg-green-600  text-white rounded p-6 mb-10 font-bold text-xl"
             type="submit"
           >
             Generate homework
