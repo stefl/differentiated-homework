@@ -1,15 +1,6 @@
-"use client";
-import dynamic from "next/dynamic";
-
-const DynamicTry = dynamic(() => import("../components/Try"), {
-  loading: () => <p>Loading...</p>,
-});
-
+import Try from "../components/Try";
 const TryPage = () => {
-  if (typeof window === undefined) {
-    return null;
-  }
-  return <DynamicTry />;
+  return <Try />;
 };
 
 export default TryPage;
