@@ -144,7 +144,7 @@ export default function Generator() {
             <h1>Differentiated Homework Generator</h1>
           </div>
           <p className="text-slate-700 text-lg mb-12">
-            Teachers! Generate and adapt homework tasks to the needs of students
+            Teachers! Generate and adapt homework tasks particular students
             based on their ability or needs.{" "}
             <Link href="/try" className="text-pink-500 underline">
               Load some example inputs
