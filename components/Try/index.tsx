@@ -1,5 +1,5 @@
 "use client";
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 

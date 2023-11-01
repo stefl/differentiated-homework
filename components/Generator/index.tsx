@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 import { SaveAsDocX } from "../SaveAsDocX";
