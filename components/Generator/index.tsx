@@ -7,6 +7,7 @@ import { SaveAsDocX } from "../SaveAsDocX";
 import { Bars } from "react-loading-icons";
 import { Label } from "../Label";
 import { TfiWrite } from "react-icons/tfi";
+import Link from "next/link";
 export default function Generator() {
   // Create a ref for the div element
   const textDivRef = useRef<HTMLDivElement>(null);
@@ -144,7 +145,10 @@ export default function Generator() {
           </div>
           <p className="text-slate-700 text-lg mb-12">
             Teachers! Generate and adapt homework tasks to the needs of students
-            based on their ability or needs
+            based on their ability or needs.{" "}
+            <Link href="/try" className="text-pink-500 underline">
+              Load some example inputs
+            </Link>
           </p>
           <form onSubmit={onSubmit} className="flex flex-col gap-4">
             <Label text="About the student (eg. their action plan. Don't include PII)">
